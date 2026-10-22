@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carbon Footprint Calculator</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f7ef;
+        color: #20372a;
+      }
+
+      header {
+        background: #145c40;
+        color: white;
+        padding: 22px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h2 {
+        margin: 0;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 18px;
+      }
+
+      .hero {
+        padding: 65px 8%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .hero-text {
+        max-width: 560px;
+      }
+
+      .eyebrow {
+        color: #39784f;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: 44px;
+        line-height: 1.15;
+        margin: 18px 0;
+      }
+
+      h1 span {
+        color: #28794e;
+      }
+
+      p {
+        line-height: 1.8;
+      }
+
+      .hero-text p {
+        color: #617266;
+      }
+
+      button {
+        background: #176b49;
+        color: white;
+        border: none;
+        padding: 13px 20px;
+        border-radius: 7px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #10482f;
+      }
+
+      .planet {
+        width: 210px;
+        height: 210px;
+        background: #65a96d;
+        border: 12px solid #c9e3a2;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 90px;
+        margin: 20px auto;
+      }
+
+      .section {
+        padding: 55px 8%;
+      }
+
+      .about {
+        background: white;
+      }
+
+      .about-content {
+        max-width: 850px;
+      }
+
+      .calculator-section {
+        background: #104b35;
+        color: white;
+      }
+
+      .calculator-layout {
+        display: flex;
+        gap: 35px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .calculator-intro {
+        flex: 1;
+        min-width: 240px;
+      }
+
+      .calculator-card {
+        flex: 1.2;
+        min-width: 280px;
+        background: white;
+        color: #20372a;
+        padding: 28px;
+        border-radius: 12px;
+        box-shadow: 0 10px 35px #0002;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        font-size: 13px;
+        margin: 15px 0 7px;
+      }
+
+      input, select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d6dfd6;
+        border-radius: 6px;
+        background: white;
+        font-size: 14px;
+      }
+
+      .calculate {
+        width: 100%;
+        margin-top: 22px;
+      }
+
+      #result {
+        display: none;
+        background: #edf5e4;
+        padding: 18px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      #score {
+        font-size: 35px;
+        font-weight: bold;
+        color: #176b49;
+      }
+
+      .tips-grid {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+      }
+
+      .tip {
+        flex: 1;
+        min-width: 200px;
+        background: white;
+        padding: 23px;
+        border: 1px solid #e0e7dd;
+        border-radius: 10px;
+      }
+
+      .tip h3 {
+        color: #176b49;
+      }
+
+      .closing {
+        background: #e4edda;
+        text-align: center;
+        padding: 55px 8%;
+      }
+
+      footer {
+        background: #103e2d;
+        color: white;
+        text-align: center;
+        padding: 25px;
+        font-size: 12px;
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 34px;
+        }
+
+        header {
+          gap: 15px;
+          flex-wrap: wrap;
+        }
+
+        nav a {
+          margin-left: 8px;
+        }
+
+        .section, .hero {
+          padding: 40px 6%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h2>EcoTrack</h2>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#tips">Take Action</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <div class="eyebrow">SMALL CHOICES. BIG IMPACT.</div>
+          <h1>
+            Understand your impact.<br />
+            <span>Change your footprint.</span>
+          </h1>
+          <p>
+            Everyday choices affect our planet. Calculate your estimated carbon
+            footprint and discover simple ways to reduce it.
+          </p>
+          <button
+            onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})"
+          >
+            Calculate My Footprint ↓
+          </button>
+        </div>
+
+        <div class="planet" aria-label="Green planet">🌍</div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="eyebrow">THE BIG PICTURE</div>
+        <h2>What Is a Carbon Footprint?</h2>
+        <div class="about-content">
+          <p>
+            A carbon footprint is the amount of greenhouse gases released into
+            the atmosphere by a person, activity, or product. These gases trap
+            heat and contribute to climate change.
+          </p>
+          <p>
+            Transportation, electricity, food, and the things we buy all affect
+            our footprint. Understanding these effects helps us make more
+            environmentally responsible choices.
+          </p>
+        </div>
+      </section>
+
+      <section class="section calculator-section" id="calculator">
+        <div class="calculator-layout">
+          <div class="calculator-intro">
+            <div class="eyebrow" style="color:#c9e99b">
+              YOUR PERSONAL ESTIMATE
+            </div>
+            <h2>Let's Calculate Your Footprint.</h2>
+            <p>
+              Answer four quick questions about your lifestyle. Your answers
+              will be used to estimate your yearly impact.
+            </p>
+          </div>
+
+          <form class="calculator-card" id="footprintForm">
+            <h2>Lifestyle Calculator</h2>
+
+            <label for="transport">Main Way You Travel</label>
+            <select id="transport">
+              <option value="2.4">Car</option>
+              <option value="1.2">Public Transport</option>
+              <option value="0.4">Walking or Cycling</option>
+              <option value="1.6">A Mix of Methods</option>
+            </select>
+
+            <label for="electricity">Electricity Use at Home</label>
+            <select id="electricity">
+              <option value="0.7">Low</option>
+              <option value="1.5" selected>Average</option>
+              <option value="2.5">High</option>
+            </select>
+
+            <label for="diet">Typical Diet</label>
+            <select id="diet">
+              <option value="0.8">Mostly Plant-Based</option>
+              <option value="1.5" selected>Mixed Diet</option>
+              <option value="2.3">Meat Most Days</option>
+            </select>
+
+            <label for="shopping">Shopping Habits</label>
+            <select id="shopping">
+              <option value="0.4">Only When Needed</option>
+              <option value="1.0" selected>Sometimes</option>
+              <option value="1.7">Frequently</option>
+            </select>
+
+            <button class="calculate" type="submit">
+              Calculate My Result →
+            </button>
+
+            <div id="result" aria-live="polite">
+              <div>Your Estimated Annual Footprint</div>
+              <div><span id="score">0</span> tonnes CO₂e</div>
+              <p id="message"></p>
+              <button type="button" id="reset">Try Again</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="tips">
+        <div class="eyebrow">MAKE A DIFFERENCE</div>
+        <h2>Small Steps, Lighter Impact.</h2>
+        <p>
+          Start with one practical change and build better habits over time.
+        </p>
+
+        <div class="tips-grid">
+          <article class="tip">
+            <h3>01. Travel</h3>
+            <p>
+              Walk, cycle, carpool, or use public transport when practical and
+              safe. Combining trips can reduce unnecessary driving.
+            </p>
+          </article>
+
+          <article class="tip">
+            <h3>02. Energy</h3>
+            <p>
+              Switch off unused lights, choose efficient appliances when
+              possible, and use electricity thoughtfully.
+            </p>
+          </article>
+
+          <article class="tip">
+            <h3>03. Food</h3>
+            <p>
+              Plan meals, store food correctly, and use leftovers to reduce food
+              waste.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="eyebrow">A BETTER FUTURE STARTS HERE</div>
+        <h2>The Planet Needs Progress, Not Perfection.</h2>
+        <p>
+          Every thoughtful choice can be a step toward a healthier environment.
+        </p>
+        <button
+          onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})"
+        >
+          Check Your Footprint ↑
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <h3>EcoTrack</h3>
+      <p>Learn more. Waste less. Care for our shared home.</p>
+      <p>
+        Educational project — calculator results are illustrative estimates.
+      </p>
+    </footer>
+
+    <script>
+
+      document.getElementById("footprintForm").onsubmit = function(event) {
+        event.preventDefault();
+
+        var transport = Number(document.getElementById("transport").value);
+        var electricity = Number(document.getElementById("electricity").value);
+        var diet = Number(document.getElementById("diet").value);
+        var shopping = Number(document.getElementById("shopping").value);
+
+        var score = Math.round(
+          (transport + electricity + diet + shopping) * 10
+        ) / 10;
+
+        document.getElementById("score").textContent = score.toFixed(1);
+
+        var message = "";
+
+        if (score < 4.5) {
+          message = "Your selected habits give a relatively lower estimate. Keep up the positive choices.";
+        } else if (score < 6.5) {
+          message = "There is room to reduce your impact. Try improving one habit at a time.";
+        } else {
+          message = "Your estimate is higher. Consider changes to travel, energy use, food, or shopping.";
+        }
+
+        document.getElementById("message").textContent = message;
+        document.getElementById("result").style.display = "block";
+      };
+
+      document.getElementById("reset").onclick = function() {
+        document.getElementById("footprintForm").reset();
+        document.getElementById("result").style.display = "none";
+      };
+    </script>
+  </body>
+</html>
